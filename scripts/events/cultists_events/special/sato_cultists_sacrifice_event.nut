@@ -26,7 +26,7 @@ sato_cultists_sacrifice_event <- inherit("scripts/events/event", {
 								}
 							},
 							{
-								Text = "Few have dealt out such death as our veteran, %sac2%. Davkul will be pleased to meet him."
+								Text = "Few deal death like our veteran, %sac2%. Davkul will be pleased to meet him."
 								function getResult(_event) {
 									_event.m.Sacrifice = _event.m.Sacrifice2;
 									return "B";
@@ -95,7 +95,7 @@ sato_cultists_sacrifice_event <- inherit("scripts/events/event", {
 
 				// If you sacrificed your highest rank bro, your next highest bro will get auto-bumped to his rank before normal rank up logic
 				foreach ( bro in brothers ) {
-					if (bro.getBackground.getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist") {
+					if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist") {
 						if (bro.getSkills().hasSkill("trait.cultist_prophet")) {
 							hasProphet = true;
 							highestRankBro = bro;
@@ -171,7 +171,7 @@ sato_cultists_sacrifice_event <- inherit("scripts/events/event", {
 						if (bro.getMoodState() >= Const.MoodState.Neutral)
 							List.push( { id = 10, icon = Const.MoodStateIcon[bro.getMoodState()], text = bro.getName() + Const.MoodStateEvent[bro.getMoodState()] } );
 
-						if (Math.rand(1, 100) > 50 || veteranSacrifice)
+						if (Math.rand(1, 100) > 50 && !veteranSacrifice)
 							continue;
 
 						local skills = bro.getSkills();
@@ -251,22 +251,7 @@ sato_cultists_sacrifice_event <- inherit("scripts/events/event", {
 		if (prophetIndex >= 0)
 			brothers.remove[prophetIndex];
 
-		brothers.sort(function(_a, _b) {
-			if (_a.getXP() < _b.getXP())
-				return -1;
-			else if (_a.getXP() > _b.getXP())
-				return 1;
-			return 0;
-		});
-
-		local r = Math.rand(0, 3);
-		m.Sacrifice1 = brothers[r];
-		brothers.remove(r);
-
-		r = Math.rand(brothers.len() - 4, brothers.len() - 1);
-		m.Sacrifice2 = brothers[r];
-
-		if (brothers.len() < 4 || r < 0) {
+		if (brothers.len() < 4) {
 			World.Statistics.getFlags().set("SatoCultistsSacrificeDelayDays", 2);
 			return false;
 		} else if (World.Statistics.getFlags().getAsInt("SatoCultistsSacrificeDelayDays") > 0)
@@ -280,6 +265,36 @@ sato_cultists_sacrifice_event <- inherit("scripts/events/event", {
 		}
 
 		return false;
+	}
+
+	function onPrepare() {
+		local brothers = World.getPlayerRoster().getAll();
+		local prophetIndex = -1;
+
+		for (local i = 0; i != brothers.len(); ++i) {
+			if (brothers[i].getSkills().hasSkill("trait.cultist_prophet")) {
+				prophetIndex = i;
+				break;
+			}
+		}
+
+		if (prophetIndex >= 0)
+			brothers.remove[prophetIndex];
+
+		brothers.sort(function(_a, _b) {
+			if (_a.getXP() < _b.getXP())
+				return -1;
+			else if (_a.getXP() > _b.getXP())
+				return 1;
+			return 0;
+		});
+
+		local r = Math.rand(0, 2);
+		m.Sacrifice1 = brothers[r];
+		brothers.remove(r);
+
+		r = Math.rand(brothers.len() - 3, brothers.len() - 1);
+		m.Sacrifice2 = brothers[r];
 	}
 
 	function onPrepareVariables(_vars) {
