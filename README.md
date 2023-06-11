@@ -75,7 +75,7 @@ With these changes the origin is less dependent on chance for its mechanics to k
 
 ## Compatibility
 
-This should be fully save game compatible, i.e. you can make a save with it active and remove it without corrupting that save. Scaling on Barbarian camps may take some time to readjust.
+This mod strives to be as save-game compatible and safe as possible. You might run into issues removing it mid-campaign on saves playing as the affected origins.
 
 ### Building
 
