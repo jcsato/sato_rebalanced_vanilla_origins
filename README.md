@@ -64,7 +64,7 @@ With these changes the origin is less dependent on chance for its mechanics to k
 
 ## Installation
 
-1) Download the mod from the [releases page](https://github.com/jcsato/sato_enemy_balance_mod/releases/latest)
+1) Download the mod from the [releases page](https://github.com/jcsato/sato_rebalanced_vanilla_origins/releases/latest)
 2) Without extracting, put the `sato_rebalanced_vanilla_origins_*.zip` file in your game's data directory
     1) For Steam installations, this is typically: `C:\Program Files (x86)\Steam\steamapps\common\Battle Brothers\data`
     2) For GOG installations, this is typically: `C:\Program Files (x86)\GOG Galaxy\Games\Battle Brothers\data`
