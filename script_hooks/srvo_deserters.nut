@@ -148,7 +148,7 @@
         create();
 
         if (m.ID == "scenario.deserters") {
-            m.Description = "[p=c][img]gfx/ui/events/event_88.png[/img][/p][p]For too long have you been dragged from one bloody battle to another at the whim of lords sitting in high towers. Last night, you absconded from camp together with three others. You're dressed like soldiers still, but you're deserters, and the noose will be your end if you stay here for too long.\n\n[color=#bcad8c]Deserters:[/color] Start with three deserters and decent armor, but lower funds and a noble house that wants to hunt you down.\n[color=#bcad8c]Downtrodden:[/color] All morale loss is increased by 75%.\n[color=#bcad8c]Better Part of Valor:[/color] The malus of negative morale effects is halved.[/p]";
+            m.Description = "[p=c][img]gfx/ui/events/event_88.png[/img][/p][p]For too long have you been dragged from one bloody battle to another at the whim of lords sitting in high towers. Last night, you absconded from camp together with three others. You're dressed like soldiers still, but you're deserters, and the noose will be your end if you stay here for too long.\n\n[color=#bcad8c]Deserters:[/color] Start with three deserters and decent armor, but lower funds and a noble house that wants to hunt you down.\n[color=#bcad8c]Downtrodden:[/color] All mood loss is increased by 75%.\n[color=#bcad8c]Better Part of Valor:[/color] The malus of negative morale effects is halved.[/p]";
         }
     });
 });
