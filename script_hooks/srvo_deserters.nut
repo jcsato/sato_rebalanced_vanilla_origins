@@ -5,7 +5,7 @@
 	::mods_override(mc, "getTooltip", function() {
 		local ret = getTooltip();
 
-		if (getContainer().getActor().isPlayerControlled() && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters") {
+		if (getContainer().getActor().isPlayerControlled() && "Assets" in World && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters") {
 			switch(getContainer().getActor().getMoraleState()) {
 				case Const.MoraleState.Wavering:
 					local ret = [
@@ -50,7 +50,7 @@
 	});
 
 	::mods_override(mc, "onUpdate", function(_properties) {
-		if (getContainer().getActor().isPlayerControlled() && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters") {
+		if (getContainer().getActor().isPlayerControlled() && "Assets" in World && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters") {
 			m.IsHidden = getContainer().getActor().getMoraleState() == Const.MoraleState.Steady;
 			m.Name = Const.MoraleStateName[getContainer().getActor().getMoraleState()];
 
@@ -109,7 +109,7 @@
 	local worsenMood = ::mods_getMember(p, "worsenMood");
 
 	::mods_override(p, "worsenMood", function(_a = 1.0, _reason = "") {
-		if (World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters")
+		if ("Assets" in World && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters")
 			_a *= 1.75;
 
 		worsenMood(_a, _reason);
@@ -122,7 +122,7 @@
 	::mods_override(sc, "onUpdate", function(_properties) {
 		onUpdate(_properties);
 
-		if (World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters") {
+		if ("Assets" in World && World.Assets.getOrigin() != null && World.Assets.getOrigin().getID() == "scenario.deserters") {
 			if (!("State" in Tactical) || Tactical.State == null || Tactical.State.isScenarioMode())
 				return;
 

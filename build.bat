@@ -2,7 +2,7 @@
 
 set modname=sato_rebalanced_vanilla_origins
 set modkitdir=YOUR_MODKIT_BIN_PATH
-set version=1.0
+set version=1.1
 
 echo.
 echo Creating temporary directory...
